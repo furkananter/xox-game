@@ -1,3 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+    html, body, #root{
+        font-family: "Century Gothic", Futura, sans-serif;
+        font-size: 14px;
+        @apply w-full;
+        background-color: #f5f5f5;
+    } 
+
+}
