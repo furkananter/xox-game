@@ -65,10 +65,21 @@ class Board extends React.Component {
       status = "Next Player: " + (this.state.xIsNext ? 'X' : 'O')
     }
 
+    const item = {
+      hidden: { y: 20, opacity: 0 },
+      visible: {
+        y: 0,
+        opacity: 1
+      }
+    };
+
     return (
-      <div >
+      <div 
+      initial="hidden"
+      animate="visible"
+      variants={item}>
         <div className="mb-2.5">{status}</div>
-        <div className="after:content-[''] table-auto clear-both rounded-lg ">
+        <div className="after:content-[''] table-auto clear-both">
           {this.renderSquare(0)}
           {this.renderSquare(1)}
           {this.renderSquare(2)}
