@@ -9,7 +9,7 @@ class Game extends React.Component {
   render() {
     return (
       <div className="flex w-full h-screen py-10 m-auto bg-black text-white text-center justify-center">
-        <div>
+        <div className='justify-center items-center flex'>
           <Board />
         </div>{/* Board div */}
         <div className="ml-5">

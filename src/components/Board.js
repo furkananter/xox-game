@@ -1,5 +1,6 @@
 import React from 'react';
 import Square from './Square';
+import { motion } from 'framer-motion';
 
 
 /* 
@@ -120,37 +121,91 @@ class Board extends React.Component {
     // Framer Motion Part
     // Açılış kısmındaki animasyon.
     const item = {
-      hidden: { y: 20, opacity: 0 },
+      hidden: { y: 40, opacity: 0 },
       visible: {
         y: 0,
-        opacity: 1
+        opacity: 1,
+        transition: {
+          duration: 0.6,
+        }
       }
     };
     // Framer Motion Part
+    const item2 = {
+      hidden: { y: 60, opacity: 0 },
+      visible: {
+        y: 0,
+        opacity: 1,
+        transition: {
+          duration: 0.8,
+        }
+      }
+    }
+    const item3 = {
+      hidden: { y: 80, opacity: 0 },
+      visible: {
+        y: 0,
+        opacity: 1,
+        transition: {
+          duration: 1,
+        }
+      }
+    }
+    const text = {
+      hidden: { y: -150, opacity: 0 },
+      visible: {
+        y: 0,
+        opacity: 1,
+        transition: {
+          duration: 1,
+        }
+      }
+    }
+
 
     return (
       <div
         // Başlangıçta Hidden, sonra visible.
+        // initial="hidden"
+        // animate="visible"
+        // variants={item}
+      >
+        <motion.div 
+        initial="hidden"
+        animate="visible"
+        variants={text}
+        className="mb-2.5 hover:underline">{status}
+        </motion.div>{/* Status Div */}
+
+        <motion.div 
         initial="hidden"
         animate="visible"
         variants={item}
-      >
-        <div className="mb-2.5">{status}</div>{/* Status Div */}
-        <div className="after:content-[''] table-auto clear-both">
+        className="after:content-[''] table-auto clear-both">
           {this.renderSquare(0)}
           {this.renderSquare(1)}
           {this.renderSquare(2)}
-        </div>{/* 1th div */}
-        <div className="table-auto after:content-[''] clear-both">
+        </motion.div>{/* 1th div */}
+
+        <motion.div 
+        initial="hidden"
+        animate="visible"
+        variants={item2}
+        className="table-auto after:content-[''] clear-both">
           {this.renderSquare(3)}
           {this.renderSquare(4)}
           {this.renderSquare(5)}
-        </div>{/* 2th div */}
-        <div className="table-auto after:content-[''] clear-both">
+        </motion.div>{/* 2th div */}
+
+        <motion.div
+        initial="hidden"
+        animate="visible"
+        variants={item3}
+         className="table-auto after:content-[''] clear-both">
           {this.renderSquare(6)}
           {this.renderSquare(7)}
           {this.renderSquare(8)}
-        </div>{/* 3th div */}
+        </motion.div>{/* 3th div */}
       </div>/* Wrapper */
     );
   }

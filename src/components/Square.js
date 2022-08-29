@@ -23,7 +23,13 @@ function Square(props) {
       variants={item}
       whileTap={{ scale: 1.1 }}
       onClick={props.onClick}
-      className={`hidden:opactiy-0 visible:opacity-1 bg-white text-black border-black border-4 float-left text-4xl font-bold  -mr-[1px] -mt-[1px] p-0 text-center w-16 h-16 focus:outline-none ${props.value === 'X' ? 'focus:bg-green-400' : 'focus:bg-red-400'} focus:text-white`}
+      className={
+        `hidden:opactiy-0 visible:opacity-1 bg-white text-black border-black 
+        border-4 float-left text-4xl font-bold  -mr-[1px] -mt-[1px] p-0 text-center 
+        w-16 h-16 focus:outline-none focus:text-white 
+        ${props.value === 'X' ? ' focus:bg-green-400' : 'focus:bg-red-400'} 
+        cursor-pointer
+        `}
     >
       {/*
         Props.value aracılığı ile verilerimizi Board.js sınıfından alıyoruz.
