@@ -130,7 +130,7 @@ class Board extends React.Component {
         }
       }
     };
-    // Framer Motion Part
+
     const item2 = {
       hidden: { y: 60, opacity: 0 },
       visible: {
@@ -161,47 +161,42 @@ class Board extends React.Component {
         }
       }
     }
-
+    // Framer Motion Part
 
     return (
-      <div
-        // Başlangıçta Hidden, sonra visible.
-        // initial="hidden"
-        // animate="visible"
-        // variants={item}
-      >
-        <motion.div 
-        initial="hidden"
-        animate="visible"
-        variants={text}
-        className="mb-2.5 hover:underline">{status}
+      <div>
+        <motion.div
+          initial="hidden"
+          animate="visible"
+          variants={text}
+          className="mb-2.5 hover:underline">{status}
         </motion.div>{/* Status Div */}
 
-        <motion.div 
-        initial="hidden"
-        animate="visible"
-        variants={item}
-        className="after:content-[''] table-auto clear-both">
+        <motion.div
+          initial="hidden"
+          animate="visible"
+          variants={item}
+          className="after:content-[''] table-auto clear-both">
           {this.renderSquare(0)}
           {this.renderSquare(1)}
           {this.renderSquare(2)}
         </motion.div>{/* 1th div */}
 
-        <motion.div 
-        initial="hidden"
-        animate="visible"
-        variants={item2}
-        className="table-auto after:content-[''] clear-both">
+        <motion.div
+          initial="hidden"
+          animate="visible"
+          variants={item2}
+          className="table-auto after:content-[''] clear-both">
           {this.renderSquare(3)}
           {this.renderSquare(4)}
           {this.renderSquare(5)}
         </motion.div>{/* 2th div */}
 
         <motion.div
-        initial="hidden"
-        animate="visible"
-        variants={item3}
-         className="table-auto after:content-[''] clear-both">
+          initial="hidden"
+          animate="visible"
+          variants={item3}
+          className="table-auto after:content-[''] clear-both">
           {this.renderSquare(6)}
           {this.renderSquare(7)}
           {this.renderSquare(8)}

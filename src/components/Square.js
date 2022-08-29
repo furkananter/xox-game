@@ -3,13 +3,13 @@ import { motion } from 'framer-motion';
 
 function Square(props) {
   // Item - Framer Motion
-  const item = {
+  const square = {
     hidden: { y: 80, opacity: 0 },
     visible: {
       y: 0,
       opacity: 1,
       transition: {
-        duration: 0.8,
+        duration: 1,
       }
     }
   }
@@ -20,7 +20,7 @@ function Square(props) {
       whileHover={{ scale: 0.95, boxShadow: '0px 0px 0px 1px rgba(0,0,0,0.5)' }}
       initial="hidden"
       animate="visible"
-      variants={item}
+      variants={square}
       whileTap={{ scale: 1.1 }}
       onClick={props.onClick}
       className={
