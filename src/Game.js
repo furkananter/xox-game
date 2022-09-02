@@ -1,12 +1,12 @@
 import React from 'react'
 import Board from './components/Board'
-
+import { motion } from 'framer-motion';
 
 const style = {
   main: "flex w-full h-screen py-10 m-auto bg-black text-white text-center justify-center",
   board: "justify-center items-center flex",
   statusAndTodo: "ml-5",
-  orderedList:"pl-8"
+  orderedList: "pl-8"
 }
 
 // Calculate Winner fonksiyonu:
@@ -39,7 +39,7 @@ function calculateWinner(squares) {
 // Component'lerin renderlandığı yer.
 
 class Game extends React.Component {
-  constructor(props){
+  constructor(props) {
     super(props)
     this.state = {
       history: [{
@@ -75,14 +75,39 @@ class Game extends React.Component {
       squares[i] = this.state.xIsNext ? 'X' : 'O';
       this.setState({
         history: history.concat([{
-        squares: squares,
+          squares: squares,
         }]),
         xIsNext: !this.state.xIsNext,
       })
     }
   }
 
+  // Restart Fonksiyonu:
+  // Aslında bu yoktu, içimden geldi.
+  handleRestart() {
+    this.setState({
+      history: [{
+        squares: Array(9).fill(null)
+      }],
+      xIsNext: true,
+    })
+  }
+  
+
   render() {
+    // Motion Frame kullanılarak animasyonu yapıyoruz.
+    const text = {
+      hidden: { y: -150, opacity: 0 },
+      visible: {
+        y: 0,
+        opacity: 1,
+        transition: {
+          duration: 1,
+        }
+      }
+    }
+    // Motion Frame bölmesi
+
     const history = this.state.history
     const current = history[history.length - 1]
     const winner = calculateWinner(current.squares)
@@ -94,19 +119,30 @@ class Game extends React.Component {
     } else {
       status = "Next Player: " + (this.state.xIsNext ? 'X' : 'O')
     }
+
+    
     return (
       <div className={style.main}>
         <div className={style.board}>
           <div>
-            {status}
-            <Board squares={current.squares} onClick={(i) => this.handleClick(i)}/>
+            <motion.div
+              initial="hidden"
+              animate="visible"
+              variants={text}
+              className="mb-2.5 hover:underline">{status}
+            </motion.div>
+            <Board squares={current.squares} onClick={(i) => this.handleClick(i)} />
           </div>
         </div>{/* Board div */}
         <div className={style.statusAndTodo}>
           <ol className={style.orderedList}>
             {/* TODO */}
+
           </ol>{/* Ordered List */}
         </div>{/* Status & Todo div */}
+        {winner
+        ? <button onClick={() => this.handleRestart()}>Restart</button> 
+        : "Devamke"}
       </div>/* Main div */
     );
   }
